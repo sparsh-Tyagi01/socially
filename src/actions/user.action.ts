@@ -3,7 +3,7 @@
 import { prisma } from "@/lib/prisma";
 import { auth, currentUser } from "@clerk/nextjs/server"
 
-export async function userSync() {
+export async function syncUser() {
     try {
         const {userId} = await auth()
         const user = await currentUser()
