@@ -1,4 +1,5 @@
 import CreatePost from "@/components/CreatePost";
+import WhoToFollow from "@/components/WhoToFollow";
 import { currentUser } from "@clerk/nextjs/server";
 
 export default async function Home() {
@@ -9,7 +10,9 @@ export default async function Home() {
         {user ? <CreatePost /> : null}
       </div>
 
-      <div className="hidden lg:block lg:grid-col-span-4 sticky top-20">WhotoFollow</div>
+      <div className="hidden lg:block lg:grid-col-span-4 sticky top-20">
+        <WhoToFollow />
+      </div>
     </div>
   );
 }
