@@ -8,11 +8,25 @@ import toast from "react-hot-toast";
 import { Card, CardContent } from "./ui/card";
 import Link from "next/link";
 import { Avatar, AvatarImage } from "./ui/avatar";
-import { formatDistanceToNow } from "date-fns";
 import { DeleteAlertDialog } from "./DeleteAlertDialog";
 import { Button } from "./ui/button";
 import { HeartIcon, LogInIcon, MessageCircleIcon, SendIcon } from "lucide-react";
 import { Textarea } from "./ui/textarea";
+
+const formatDistanceToNow = (date: Date): string => {
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffSecs = Math.floor(diffMs / 1000);
+  const diffMins = Math.floor(diffSecs / 60);
+  const diffHours = Math.floor(diffMins / 60);
+  const diffDays = Math.floor(diffHours / 24);
+
+  if (diffSecs < 60) return "now";
+  if (diffMins < 60) return `${diffMins}m`;
+  if (diffHours < 24) return `${diffHours}h`;
+  if (diffDays < 30) return `${diffDays}d`;
+  return date.toLocaleDateString();
+};
 
 type Posts = Awaited<ReturnType<typeof getPosts>>;
 type Post = Posts[number];
